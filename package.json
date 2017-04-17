@@ -7,7 +7,7 @@
     "start": "nodemon bin/tv_faves",
     "test": "mocha --recursive --watch -R list"
   },
-  "engines": { 
+  "engines": {
     "node": "7.3.0"
   },
   "dependencies": {
@@ -19,7 +19,6 @@
     "knex": "^0.12.9",
     "morgan": "~1.7.0",
     "pg": "^6.1.2",
-    "pug": "~2.0.0-beta10",
     "serve-favicon": "~2.3.2"
   },
   "devDependencies": {
