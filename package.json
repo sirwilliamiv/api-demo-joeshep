@@ -8,7 +8,7 @@
     "test": "mocha --recursive --watch -R list"
   },
   "engines": {
-    "node": "7.3.0"
+    "node": "7.4.0"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
