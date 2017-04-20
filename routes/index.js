@@ -12,3 +12,8 @@ router.get('/', function(req,res) {
     'directors': 'https://api-demo-c17.herokuapp.com/api/v1/directors?showId=<show_id>'
   })
 })
+
+
+//add route for all directors
+//add route for certain director to get all shows
+module.exports = router;

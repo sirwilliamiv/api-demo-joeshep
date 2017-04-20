@@ -2,6 +2,8 @@
 
 const { bookshelf } = require('../db/database');
 const Show = require('../models/show');
+const Director = require('../models/director');
+const Show_Director = require('../models/show_director');
 
 module.exports.getShows = (req, res, next) => {
   Show.getAll()
@@ -58,6 +60,7 @@ module.exports.getShowFaves = ({ query: { showId } }, res, next) => {
     .catch((err) => {
       next(err);
     });
+  }
 
 module.exports.getShowDirectors = ({ query: { showId } }, res, next) => {
   console.log("getting a show and directors", showId);
@@ -68,5 +71,28 @@ module.exports.getShowDirectors = ({ query: { showId } }, res, next) => {
     })
     .catch((err) => {
       next(err);
+    });
+  }
+
+module.exports.getAllforDirector = ({ query: { director } }, res, next) => {
+  console.log("getting all shows for a director", director)
+  Director.forge({ id: director })
+  .fetch({ withRelated: ['shows'], require:true}) //shows is method from directors model
+  .then( (allshowsbydirector) => {
+    res.status(200).json(allshowsbydirector)
+  })
+  .catch((err) => {
+    console.log('error from getallfordirector', err)
+    next(err);
+  })
+}
+module.exports.getAllDirectors = (req, res, next) => {
+  console.log('getting all the directors')
+   Director.getAll()
+    .then((shows) => {
+      res.status(200).json(shows);
+    })
+    .catch((error) => {
+      next(error);
     });
 };
