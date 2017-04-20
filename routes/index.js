@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-const { Router } = require('express');
+const { Router } =require('express');
 const router = Router();
 
-const { getShows, getShow, getShowFaves, addShow, deleteShow } = require('../controllers/showCtrl');
+router.use(require('./shows'));
 
-router.get('/shows', getShows);
-router.post('/shows/new', addShow);
-router.get('/shows/favorites', getShowFaves);
-router.get('/shows/:id', getShow);
-router.delete('/shows/:id', deleteShow);
-
-module.exports = router;
+router.get('/', function(req,res) {
+  res.json({
+    'shows':'https://api-demo-c17.herokuapp.com/api/v1/shows/',
+    'favorites': 'https://api-demo-c17.herokuapp.com/api/v1/favorites?showId=<show_id>',
+    'directors': 'https://api-demo-c17.herokuapp.com/api/v1/directors?showId=<show_id>'
+  })
+})

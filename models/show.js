@@ -2,10 +2,13 @@
 
 const { bookshelf } = require('../db/database');
 require('./favorite');
+require('./director');
+require('./show_director');
 
 const Show = bookshelf.Model.extend({
   tableName: 'shows',
-  upvotes: function(){ return this.hasMany('Favorite')}
+  upvotes: function(){ return this.hasMany('Favorite')},
+  directors: function(){ return this.belongsToMany('Director').through('Show_Director')}
 }, {
   getAll: function() {
     console.log("Get all called from Show Model");
